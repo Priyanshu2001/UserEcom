@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/ProductName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Product Name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFC107"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/barrier"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/AddBtn" />
+
+    <TextView
+        android:id="@+id/PriceView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Rs.30"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/teal_200"
+        app:layout_constraintEnd_toEndOf="@+id/ProductName"
+        app:layout_constraintStart_toStartOf="@+id/ProductName"
+        app:layout_constraintTop_toBottomOf="@+id/ProductName" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="left"
+        app:constraint_referenced_ids="AddBtn,inc_qty,QtyView,dec_qty"
+        tools:layout_editor_absoluteX="403dp"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <Button
+        android:id="@+id/AddBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/notif"
+        android:text="+ ADD"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group"
+        android:layout_width="4dp"
+        android:layout_height="18dp"
+        android:visibility="gone"
+        app:constraint_referenced_ids="inc_qty,dec_qty,QtyView"
+        tools:layout_editor_absoluteX="395dp"
+        tools:layout_editor_absoluteY="48dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/inc_qty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/incrementBg"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_increment" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/dec_qty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/decrementBg"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="@+id/inc_qty"
+        app:layout_constraintEnd_toStartOf="@+id/QtyView"
+        app:layout_constraintTop_toTopOf="@+id/inc_qty"
+        app:srcCompat="@drawable/ic_decrement" />
+
+    <TextView
+        android:id="@+id/QtyView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:padding="5dp"
+        android:text="10"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/teal_200"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/inc_qty"
+        app:layout_constraintEnd_toStartOf="@+id/inc_qty"
+        app:layout_constraintTop_toTopOf="@+id/inc_qty" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
