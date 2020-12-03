@@ -1,3 +1,3 @@
 # Download the apk 
 
-[Apk download](https://github.com/Priyanshu2001/User_Ecom/releases/download/initial/app-debug.apk)
+[Apk download](https://github.com/Priyanshu2001/UserEcom/releases/download/initial/app-debug.apk)
