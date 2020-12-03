@@ -16,7 +16,7 @@
 
             <bitmap
                 android:gravity="center"
-                android:src="@drawable/download" />
+                android:src="@drawable/login" />
         </item>
     </layer-list>
 

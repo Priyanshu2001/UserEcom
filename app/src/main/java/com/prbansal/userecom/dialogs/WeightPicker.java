@@ -25,7 +25,7 @@ public class WeightPicker extends AppCompatActivity {
     private WeightPickerBinding weightPickerBinding;
     private Cart cart;
     private Products product;
-    int value;
+    float minVal;
 
     public void show(Context context, final Cart cart, final Products products, OnWeightPickedListener listener) {
         weightPickerBinding = WeightPickerBinding.inflate(LayoutInflater.from(context));
@@ -67,9 +67,9 @@ public class WeightPicker extends AppCompatActivity {
 
     public void setupPickers() {
 
-        float minVal =  product.minQty*1000;
-        weightPickerBinding.gPicker.setMinValue((int) ((minVal - 1000 )/ 50));
-        weightPickerBinding.kgPicker.setMinValue((int) minVal/1000);
+         minVal =  product.minQty;
+        weightPickerBinding.gPicker.setMinValue(Math.round ((minVal - (int)minVal )*1000/ 50));
+        weightPickerBinding.kgPicker.setMinValue((int) minVal);
         weightPickerBinding.gPicker.setMaxValue(19);
         weightPickerBinding.kgPicker.setMaxValue(10);
 
@@ -95,9 +95,9 @@ public class WeightPicker extends AppCompatActivity {
                 int val = weightPickerBinding.kgPicker.getValue();
                 if (val > (int) minVal) {
                     weightPickerBinding.gPicker.setMinValue(0);
-                } else {
-                    weightPickerBinding.gPicker.setMinValue( (int) ((minVal - 1000 )/ 50));
-                }
+                } /*else {
+                    weightPickerBinding.gPicker.setMinValue( Math.round ((minVal - (int)minVal )*1000/ 50));
+                }*/
             }
         });
     }
@@ -110,11 +110,17 @@ public class WeightPicker extends AppCompatActivity {
 
     private void showPreviouslySelectedQty() {
         if (cart.AllTypeOfItemInCart.containsKey(product.name)) {
-            float qty =(cart.AllTypeOfItemInCart.get(product.name).qty);
+            float qty = (cart.AllTypeOfItemInCart.get(product.name).qty);
 
             weightPickerBinding.kgPicker.setValue((int) qty);
-           value=Math.round((qty - (int) qty)* 1000/ 50);
-            weightPickerBinding.gPicker.setValue (value);
+            int val = weightPickerBinding.kgPicker.getValue();
+            if (val > (int) minVal) {
+                weightPickerBinding.gPicker.setMinValue(0);
+            } else {
+                weightPickerBinding.gPicker.setMinValue( Math.round ((minVal - (int)minVal )*1000/ 50));
+            }
+            int value = Math.round((qty - (int) qty) * 1000 / 50);
+            weightPickerBinding.gPicker.setValue(value);
         }
     }
 

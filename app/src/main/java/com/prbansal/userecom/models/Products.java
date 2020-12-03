@@ -2,7 +2,6 @@ package com.prbansal.userecom.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Products implements Serializable {
     public static final int WEIGHT_BASED=0, VARIANT_BASED=1;
@@ -15,32 +14,17 @@ public class Products implements Serializable {
     public float minQty;
 
     // list of variants
-    public List<Variants> variants;
+    public ArrayList<Variants> variantsList;
 
     public Products() {
     }
 
-    //Constructor for Weight based products
-    public Products(String name, int pricePerKg, float minQty) {
-        this.type= WEIGHT_BASED;
+    /*public Products(String name, int type, int pricePerKg, float minQty, ArrayList<Variants> variantsList) {
         this.name = name;
+        this.type = type;
         this.pricePerKg = pricePerKg;
         this.minQty = minQty;
-    }
-
-
-    //Constructor for Variant based product
-
-    public Products(String name) {
-        this.type= VARIANT_BASED;
-        this.name =name;
-
-    }
-
-    public Products(String name, List<Variants> variantsList) {
-        type= VARIANT_BASED;
-        this.name = name;
-        this.variants = variantsList;
+        this.variantsList = variantsList;
     }
 
     // Methods to get and set Attributes  of products
@@ -53,10 +37,17 @@ public class Products implements Serializable {
 
         return ((int) minQty)+"kg";
     }
+    public void ExtractVariantsAndSet(String[] name, String[] price) {
+        variantsList = new ArrayList<>();
+        for (String s : name) {
+            variantsList.add(new Variants(s,price[count],count+1));
+            this.count++;
+        }
+    }
 
-
+*/
     public String listOfVariants(){
-        String listOfVariants = variants.toString();
+        String listOfVariants = variantsList.toString();
         return listOfVariants.replaceFirst("\\[","")
                 .replaceFirst("]","")
                 .replaceAll(",","");
@@ -69,7 +60,7 @@ public class Products implements Serializable {
                 ", type=" + type +
                 ", pricePerKg=" + pricePerKg +
                 ", minQty=" + minQty +
-                ", variantsList=" + variants +
+                ", variantsList=" + variantsList +
                 '}';
     }
     public String priceString(){

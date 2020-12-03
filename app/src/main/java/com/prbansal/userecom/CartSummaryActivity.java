@@ -43,7 +43,6 @@ public class CartSummaryActivity extends AppCompatActivity {
                     myCart.noOfItems-= entries.getValue().qty;
                     myCart.AllTypeOfItemInCart.remove(entries.getKey());
 
-
             }
         });
     }
@@ -54,21 +53,21 @@ public class CartSummaryActivity extends AppCompatActivity {
 
             setUpDeleteBtn(itemsInCartBinding,entries);
             itemsInCartBinding.itemName.setText(entries.getKey()+"");
-if(entries.getValue().pricePerKg ==0)
+
+           if(entries.getValue().pricePerKg ==0)
             itemsInCartBinding.itemPriceSummary.setText(entries.getValue().toString());
-else
-    itemsInCartBinding.itemPriceSummary.setText(entries.getValue().wbToString());
-            itemsInCartBinding.ItemPrice.setText("Rs. "+entries.getValue().price);
-          activityCartSummaryBinding.linearLayout.addView(itemsInCartBinding.getRoot());
+          else
+              itemsInCartBinding.itemPriceSummary.setText(entries.getValue().wbToString());
+              itemsInCartBinding.ItemPrice.setText("Rs. "+entries.getValue().price);
+              activityCartSummaryBinding.linearLayout.addView(itemsInCartBinding.getRoot());
         }
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, CatelogActivity.class);
+        Intent intent = new Intent();
         intent.putExtra("return_myCart",myCart);
         setResult(RESULT_OK,intent);
-        startActivity(intent);
         finish();
 
     }

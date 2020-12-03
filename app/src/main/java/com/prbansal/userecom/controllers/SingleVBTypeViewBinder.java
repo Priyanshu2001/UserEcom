@@ -11,8 +11,10 @@ import com.prbansal.userecom.models.Cart;
 import com.prbansal.userecom.models.Products;
 
 public class SingleVBTypeViewBinder {
-SingleVbtypeItemBinding singleVbtypeItemBinding;
-Cart cart;
+     SingleVbtypeItemBinding singleVbtypeItemBinding;
+     Cart cart;
+     int qty;
+
 
     public void bind(SingleVbtypeItemBinding singleVbtypeItemBinding, Products p, Cart cart) {
         this.singleVbtypeItemBinding =singleVbtypeItemBinding;
@@ -20,25 +22,27 @@ Cart cart;
         singleVbtypeItemBinding.AddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cart.addVariantsToCart(p,p.variants.get(0));
+                cart.addVariantsToCart(p,p.variantsList.get(0));
                 updateQty(1);
             }
         });
         singleVbtypeItemBinding.incQty.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-        int Qty = cart.addVariantsToCart(p,p.variants.get(0));
-        updateQty(Qty);
+         int Qty = cart.addVariantsToCart(p,p.variantsList.get(0));
+         updateQty(Qty);
     }
         });
 
         singleVbtypeItemBinding.decQty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int Qty = cart.removeVariantsFromCart(p,p.variants.get(0));
+                int Qty = cart.removeVariantsFromCart(p,p.variantsList.get(0));
                 updateQty(Qty);
             }
         });
+
+        updateQty(cart.getVariantQty(p,p.variantsList.get(0)));
     }
 
 public void updateQty(int qty) {
@@ -47,11 +51,11 @@ public void updateQty(int qty) {
        singleVbtypeItemBinding.group.setVisibility(View.VISIBLE);
    }
    else  if (qty==0){
-   singleVbtypeItemBinding.group.setVisibility(View.GONE);
+                singleVbtypeItemBinding.group.setVisibility(View.GONE);
                 singleVbtypeItemBinding.AddBtn.setVisibility(View.VISIBLE);}
 
-                singleVbtypeItemBinding.QtyView.setText(qty+"");
-                updateCheckoutSummary();
+   singleVbtypeItemBinding.QtyView.setText(qty+"");
+   updateCheckoutSummary();
         }
 
 

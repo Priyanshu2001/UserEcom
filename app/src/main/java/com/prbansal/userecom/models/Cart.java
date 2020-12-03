@@ -19,7 +19,7 @@ public class Cart implements Serializable {
         else
             AllTypeOfItemInCart.put(key,new CartItem(variants.name, variants.price));
         noOfItems++;
-        subtotal+= variants.price;
+        subtotal+=variants.price;
 
         if (TotalVariantsOfItem.containsKey(product.name)) {
             int newQty = TotalVariantsOfItem.get(product.name) + 1;
@@ -55,7 +55,7 @@ public class Cart implements Serializable {
     }
 
     public void removeAllVariantsFromCart(Products product){
-        for (Variants variant : product.variants){
+        for (Variants variant : product.variantsList){
             String key = product.name + " " + variant.name;
 
             if(AllTypeOfItemInCart.containsKey(key)){
@@ -111,5 +111,6 @@ public class Cart implements Serializable {
         this.AllTypeOfItemInCart= newCart.AllTypeOfItemInCart;
         this.subtotal = newCart.subtotal;
         this.noOfItems= newCart.noOfItems;
+        this.TotalVariantsOfItem =newCart.TotalVariantsOfItem;
     }
 }

@@ -62,7 +62,7 @@ Cart cart;
     }
 
     private void showVariants() {
-        for(Variants variant : product.variants){
+        for(Variants variant : product.variantsList){
               VariantPickerBinding variantPickerBinding = VariantPickerBinding.inflate(LayoutInflater.from(context),dvpb.getRoot(),true);
             variantPickerBinding.Variant.setText(variant.nameAndPriceString());
 

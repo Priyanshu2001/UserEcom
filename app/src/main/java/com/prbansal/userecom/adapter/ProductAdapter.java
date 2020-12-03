@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.prbansal.userecom.CatelogActivity;
 import com.prbansal.userecom.controllers.MultiVBTypeOrWBTypeViewBinder;
 import com.prbansal.userecom.controllers.SingleVBTypeViewBinder;
 import com.prbansal.userecom.databinding.MultiVbtypeOrWbtyptBinding;
@@ -18,7 +17,6 @@ import com.prbansal.userecom.models.Cart;
 import com.prbansal.userecom.models.Products;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -39,7 +37,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public int getItemViewType(int position) {
         Products p  = productsList.get(position);
-        if(p.type == Products.WEIGHT_BASED ||  p.variants.size() > 1)
+        if(p.type == Products.WEIGHT_BASED ||   p.variantsList.size() > 1)
             return WB_OR_MULTI_VB_TYPE;
 
         return SINGLE_VB_TYPE;
@@ -69,7 +67,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
      final Products p = productsList.get(position);
      if(getItemViewType(position)==SINGLE_VB_TYPE){
          SingleVbtypeItemBinding singleVbtypeItemBinding= ((SingleVbVH) holder).sVBType;
-         singleVbtypeItemBinding.ProductName.setText(p.name + " " + p.variants.get(0).name);
+         singleVbtypeItemBinding.ProductName.setText(p.name + " " + p.variantsList.get(0).name);
          singleVbtypeItemBinding.PriceView.setText(p.priceString());
 
          new SingleVBTypeViewBinder().bind(singleVbtypeItemBinding,p,cart);

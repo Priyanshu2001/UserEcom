@@ -13,6 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UserEcom">
+
+        <service
+            android:name=".service.MyFCMService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".CheckoutActivity"></activity>
         <activity android:name=".SplashActivity">
             android:theme="@style/SplashScreenTheme">
             <intent-filter>
@@ -22,9 +32,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CartSummaryActivity" />
-        <activity android:name=".CatelogActivity">
-
-        </activity>
+        <activity android:name=".CatelogActivity"></activity>
     </application>
 
 </manifest>

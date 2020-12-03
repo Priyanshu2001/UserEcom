@@ -11,5 +11,6 @@
     <color name="notif">#FF9800</color>
     <color name="decrementBg">#FD584C</color>
     <color name="incrementBg">#0BF415</color>
+    <color name="base2">#FF9800</color>
 
 </resources>

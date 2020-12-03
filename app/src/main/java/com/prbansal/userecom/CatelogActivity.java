@@ -3,7 +3,10 @@ package com.prbansal.userecom;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.prbansal.userecom.adapter.ProductAdapter;
 import com.prbansal.userecom.databinding.ActivityCatelogBinding;
 import com.prbansal.userecom.models.Cart;
@@ -38,13 +42,34 @@ public class CatelogActivity extends AppCompatActivity {
 
         app =  (MyApp) getApplicationContext();
         loadPreviousData();
+
         activityCatelogBinding.CheckoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchCartSumamaryActivity();
+                launchCheckoutActivity();
             }
         });
+        FirebaseMessaging.getInstance().subscribeToTopic("users");
     }
+
+    private void launchCheckoutActivity() {
+        Intent finalCartIntent = new Intent(this, CheckoutActivity.class);
+        finalCartIntent.putExtra("finalCart", cart);
+        startActivity(finalCartIntent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.cart,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        launchCartSumamaryActivity();
+        return super.onOptionsItemSelected(item);
+    }
+
 /*
     private void saveData() {
         SharedPreferences preferences = getSharedPreferences("products_data", MODE_PRIVATE);
@@ -106,10 +131,10 @@ public class CatelogActivity extends AppCompatActivity {
 
         productsAdapter = new ProductAdapter(this, products, cart);
 
-                activityCatelogBinding.recyclerView.setAdapter(productsAdapter);
-                activityCatelogBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                activityCatelogBinding.recyclerView.addItemDecoration(
+        activityCatelogBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        activityCatelogBinding.recyclerView.addItemDecoration(
                         new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        activityCatelogBinding.recyclerView.setAdapter(productsAdapter);
 
 
     }
@@ -144,4 +169,6 @@ public class CatelogActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }
