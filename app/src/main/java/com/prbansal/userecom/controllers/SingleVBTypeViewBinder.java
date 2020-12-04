@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.prbansal.userecom.CatelogActivity;
 
+import com.prbansal.userecom.MyApp;
 import com.prbansal.userecom.databinding.SingleVbtypeItemBinding;
 import com.prbansal.userecom.models.Cart;
 import com.prbansal.userecom.models.Products;
@@ -14,6 +15,7 @@ public class SingleVBTypeViewBinder {
      SingleVbtypeItemBinding singleVbtypeItemBinding;
      Cart cart;
      int qty;
+
 
 
     public void bind(SingleVbtypeItemBinding singleVbtypeItemBinding, Products p, Cart cart) {

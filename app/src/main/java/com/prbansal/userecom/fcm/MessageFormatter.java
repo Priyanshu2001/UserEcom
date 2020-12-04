@@ -3,7 +3,7 @@ package com.prbansal.userecom.fcm;
 public class MessageFormatter {
     private static String sampleMsgFormat = "{" +
             "  \"to\": \"/topics/%s\"," +
-            "  \"notification\": {" +
+            "  \"data\": {" +
             "       \"title\":\"%s\"," +
             "       \"body\":\"%s\"" +
             "   }" +
